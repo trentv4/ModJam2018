@@ -9,6 +9,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.trentv.musicalenergy.common.CommonProxy;
+import net.trentv.musicalenergy.common.MusicalObjects;
 
 @Mod(modid = MusicalEnergy.MODID, version = MusicalEnergy.VERSION)
 public class MusicalEnergy
@@ -32,6 +33,8 @@ public class MusicalEnergy
 	{
 		logger = event.getModLog();
 
+		MusicalObjects.init();
+		proxy.registerEventHandlers();
 	}
 
 	@EventHandler
