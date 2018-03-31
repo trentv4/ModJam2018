@@ -1,0 +1,6 @@
+{
+	"item.trumpet.use": {
+		"subtitle": "subtitles.item.musicalenergy.trumpet.use",
+		"sounds": ["musicalenergy:trumpet"]
+	}
+}

@@ -2,23 +2,43 @@ package net.trentv.musicalenergy.common;
 
 import java.util.ArrayList;
 
-import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
 import net.trentv.musicalenergy.MusicalEnergy;
+import net.trentv.musicalenergy.common.element.ElementAir;
 import net.trentv.musicalenergy.common.item.ItemTrumpet;
 
 public class MusicalObjects
 {
-	public static ArrayList<Block> blocks = new ArrayList<Block>();
 	public static ArrayList<Item> items = new ArrayList<Item>();
-	public static ArrayList<ItemBlock> itemBlocks = new ArrayList<ItemBlock>();
+	public static ArrayList<SoundEvent> sounds = new ArrayList<SoundEvent>();
+	/*
+	 * Instruments:
+	 * trumpet  : AoE effect
+	 * flute    : beam effect
+	 * vuvuzela : projectile
+	 * harmonia : self-cast
+	 */
 
 	public static final Item TRUMPET = new ItemTrumpet().setRegistryName(MusicalEnergy.MODID, "trumpet").setCreativeTab(CreativeTabs.TOOLS);
+	public static final SoundEvent TRUMPET_SOUND = new SoundEventMusical(new ResourceLocation(MusicalEnergy.MODID, "item.trumpet.use"));
+
+	/*
+	 * Elements:
+	 * fire : sets target on fire, small damage
+	 * water: slowness
+	 * earth: medium damage
+	 * air  : move backwards extreme
+	 * death: large damage to target, small to caster
+	 * life : healing
+	 */
+	public static final ElementAir AIR = new ElementAir();
 
 	public static final void init()
 	{
 		items.add(TRUMPET);
+		sounds.add(TRUMPET_SOUND);
 	}
 }

@@ -1,9 +1,8 @@
 package net.trentv.musicalenergy.common;
 
-import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
+import net.minecraft.util.SoundEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
@@ -20,24 +19,20 @@ public abstract class CommonProxy
 	public static class CommonEvents
 	{
 		@SubscribeEvent
-		public void registerBlocks(RegistryEvent.Register<Block> event)
+		public void registerSoundEvents(RegistryEvent.Register<SoundEvent> event)
 		{
-			for (Block block : MusicalObjects.blocks)
+			for (SoundEvent obj : MusicalObjects.sounds)
 			{
-				event.getRegistry().register(block);
+				event.getRegistry().register(obj);
 			}
 		}
 
 		@SubscribeEvent
 		public void registerItems(RegistryEvent.Register<Item> event)
 		{
-			for (Item item : MusicalObjects.items)
+			for (Item obj : MusicalObjects.items)
 			{
-				event.getRegistry().register(item);
-			}
-			for (ItemBlock itemBlock : MusicalObjects.itemBlocks)
-			{
-				event.getRegistry().register(itemBlock);
+				event.getRegistry().register(obj);
 			}
 		}
 
