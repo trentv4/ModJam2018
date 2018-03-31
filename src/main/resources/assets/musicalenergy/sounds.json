@@ -2,5 +2,17 @@
 	"item.trumpet.use": {
 		"subtitle": "subtitles.item.musicalenergy.trumpet.use",
 		"sounds": ["musicalenergy:trumpet"]
+	},
+	"item.flute.use": {
+		"subtitle": "subtitles.item.musicalenergy.flute.use",
+		"sounds": ["musicalenergy:flute"]
+	},
+	"item.vuvuzela.use": {
+		"subtitle": "subtitles.item.musicalenergy.vuvuzela.use",
+		"sounds": ["musicalenergy:vuvuzela"]
+	},
+	"item.harmonica.use": {
+		"subtitle": "subtitles.item.musicalenergy.harmonica.use",
+		"sounds": ["musicalenergy:harmonica"]
 	}
 }

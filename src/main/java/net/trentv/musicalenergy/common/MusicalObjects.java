@@ -16,14 +16,20 @@ public class MusicalObjects
 	public static ArrayList<SoundEvent> sounds = new ArrayList<SoundEvent>();
 	/*
 	 * Instruments:
-	 * trumpet  : AoE effect
-	 * flute    : beam effect
-	 * vuvuzela : projectile
-	 * harmonia : self-cast
+	 * trumpet   : AoE effect
+	 * flute     : beam effect
+	 * vuvuzela  : projectile
+	 * harmonica : self-cast
 	 */
 
 	public static final Item TRUMPET = new ItemTrumpet().setRegistryName(MusicalEnergy.MODID, "trumpet").setCreativeTab(CreativeTabs.TOOLS);
 	public static final SoundEvent TRUMPET_SOUND = new SoundEventMusical(new ResourceLocation(MusicalEnergy.MODID, "item.trumpet.use"));
+	public static final Item FLUTE = new ItemTrumpet().setRegistryName(MusicalEnergy.MODID, "flute").setCreativeTab(CreativeTabs.TOOLS);
+	public static final SoundEvent FLUTE_SOUND = new SoundEventMusical(new ResourceLocation(MusicalEnergy.MODID, "item.flute.use"));
+	public static final Item VUVUZELA = new ItemTrumpet().setRegistryName(MusicalEnergy.MODID, "vuvuzela").setCreativeTab(CreativeTabs.TOOLS);
+	public static final SoundEvent VUVUZELA_SOUND = new SoundEventMusical(new ResourceLocation(MusicalEnergy.MODID, "item.vuvuzela.use"));
+	public static final Item HARMONICA = new ItemTrumpet().setRegistryName(MusicalEnergy.MODID, "harmonica").setCreativeTab(CreativeTabs.TOOLS);
+	public static final SoundEvent HARMONICA_SOUND = new SoundEventMusical(new ResourceLocation(MusicalEnergy.MODID, "item.harmonica.use"));
 
 	/*
 	 * Elements:
@@ -44,6 +50,12 @@ public class MusicalObjects
 	public static final void init()
 	{
 		items.add(TRUMPET);
+		items.add(FLUTE);
+		items.add(VUVUZELA);
+		items.add(HARMONICA);
 		sounds.add(TRUMPET_SOUND);
+		sounds.add(FLUTE_SOUND);
+		sounds.add(VUVUZELA_SOUND);
+		sounds.add(HARMONICA_SOUND);
 	}
 }

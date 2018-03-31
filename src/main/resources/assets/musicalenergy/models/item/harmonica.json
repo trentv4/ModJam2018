@@ -1,0 +1,14 @@
+{
+	"parent": "item/generated",
+	"textures": {
+		"layer0": "musicalenergy:item/harmonica"
+	},
+	"overrides": [
+		{
+			"predicate": {
+				"dooting": 1
+			},
+			"model" : "musicalenergy:item/harmonica_dooting"
+		}
+	]
+}
