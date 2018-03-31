@@ -1,5 +1,7 @@
 package net.trentv.musicalenergy.common.item;
 
+import java.util.ArrayList;
+
 import javax.annotation.Nullable;
 
 import net.minecraft.entity.EntityLivingBase;
@@ -8,6 +10,9 @@ import net.minecraft.item.EnumAction;
 import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
+import net.minecraft.nbt.NBTTagString;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
@@ -18,13 +23,14 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.trentv.musicalenergy.common.MusicalObjects;
+import net.trentv.musicalenergy.common.element.Element;
 
 public class ItemTrumpet extends Item
 {
 	public ItemTrumpet()
 	{
 		setUnlocalizedName("trumpet");
-		this.addPropertyOverride(new ResourceLocation("blocking"), new IItemPropertyGetter()
+		this.addPropertyOverride(new ResourceLocation("dooting"), new IItemPropertyGetter()
 		{
 			@Override
 			@SideOnly(Side.CLIENT)
@@ -36,19 +42,9 @@ public class ItemTrumpet extends Item
 	}
 
 	@Override
-	public EnumActionResult onItemUseFirst(EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ, EnumHand hand)
-	{
-		// Clear spell and begin listening
-		return EnumActionResult.PASS;
-	}
-
-	/**
-	 * Called when the player stops using an Item (stops holding the right mouse button).
-	 */
-	@Override
 	public void onPlayerStoppedUsing(ItemStack stack, World worldIn, EntityLivingBase entityLiving, int timeLeft)
 	{
-		// Cast spell
+		// Cast spell, then clear it
 		entityLiving.playSound(MusicalObjects.TRUMPET_SOUND, 1, 1f);
 	}
 
@@ -67,8 +63,43 @@ public class ItemTrumpet extends Item
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
 	{
-		player.getHeldItem(hand).getTagCompound();
 		player.setActiveHand(hand);
+
+		Element[] elemenets = getCurrentElements(player.getHeldItem(hand));
+
 		return new ActionResult<>(EnumActionResult.SUCCESS, player.getHeldItem(hand));
+	}
+
+	public Element[] getCurrentElements(ItemStack heldItem)
+	{
+		if (heldItem.hasTagCompound())
+		{
+			NBTTagList elementList = heldItem.getTagCompound().getTagList("elements", 8);
+			ArrayList<Element> elements = new ArrayList<Element>();
+			for (int i = 0; i < elementList.tagCount(); i++)
+			{
+				String tag = elementList.getStringTagAt(i);
+				Element s = Element.deserialize(tag);
+				elements.add(s);
+			}
+			return elements.toArray(new Element[elements.size()]);
+		}
+		return new Element[] {};
+	}
+
+	public void setCurrentElements(ItemStack heldItem, Element[] elements)
+	{
+		if (!heldItem.hasTagCompound())
+		{
+			heldItem.setTagCompound(new NBTTagCompound());
+		}
+
+		NBTTagCompound baseTag = heldItem.getTagCompound();
+		NBTTagList elementList = new NBTTagList();
+		for (Element e : elements)
+		{
+			elementList.appendTag(new NBTTagString(e.serialize()));
+		}
+		baseTag.setTag("elements", elementList);
 	}
 }

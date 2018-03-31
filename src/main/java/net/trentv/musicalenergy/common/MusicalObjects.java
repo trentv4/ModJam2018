@@ -34,7 +34,12 @@ public class MusicalObjects
 	 * death: large damage to target, small to caster
 	 * life : healing
 	 */
-	public static final ElementAir AIR = new ElementAir();
+	public static final ElementAir FIRE = new ElementAir("fire");
+	public static final ElementAir WATER = new ElementAir("water");
+	public static final ElementAir EARTH = new ElementAir("earth");
+	public static final ElementAir AIR = new ElementAir("air");
+	public static final ElementAir DEATH = new ElementAir("death");
+	public static final ElementAir LIFE = new ElementAir("life");
 
 	public static final void init()
 	{

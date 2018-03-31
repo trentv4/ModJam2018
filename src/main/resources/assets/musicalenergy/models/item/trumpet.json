@@ -6,7 +6,7 @@
 	"overrides": [
 		{
 			"predicate": {
-				"blocking": 1
+				"dooting": 1
 			},
 			"model" : "musicalenergy:item/trumpet_dooting"
 		}
