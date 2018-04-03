@@ -6,9 +6,9 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.trentv.musicalenergy.common.element.Element;
 
-public class ItemTrumpet extends ItemInstrument
+public class ItemFlute extends ItemInstrument
 {
-	public ItemTrumpet(SoundEvent soundEffect)
+	public ItemFlute(SoundEvent soundEffect)
 	{
 		super(soundEffect);
 	}
@@ -18,7 +18,7 @@ public class ItemTrumpet extends ItemInstrument
 	{
 		for (Element e : elements)
 		{
-			e.onAOE(entity, world, stack);
+			e.onBeam(entity, world, stack);
 		}
 	}
 }

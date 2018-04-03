@@ -2,6 +2,9 @@ package net.trentv.musicalenergy.common.element;
 
 import java.util.HashMap;
 
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 import net.trentv.musicalenergy.MusicalEnergy;
 
 public class Element
@@ -27,19 +30,19 @@ public class Element
 		}
 	}
 
-	public void onAOE()
+	public void onAOE(EntityLivingBase entity, World world, ItemStack stack)
 	{
 	}
 
-	public void onBeam()
+	public void onBeam(EntityLivingBase entity, World world, ItemStack stack)
 	{
 	}
 
-	public void onProjectile()
+	public void onProjectile(EntityLivingBase entity, World world, ItemStack stack)
 	{
 	}
 
-	public void onSelfCast()
+	public void onSelfCast(EntityLivingBase entity, World world, ItemStack stack)
 	{
 	}
 
