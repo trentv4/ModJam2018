@@ -16,7 +16,7 @@ import net.trentv.musicalenergy.MusicalEnergy;
 
 public class Element
 {
-	private static final HashMap<String, Element> elements = new HashMap<String, Element>();
+	public static final HashMap<String, Element> elements = new HashMap<String, Element>();
 	public final String NAME;
 	public final int ID;
 	public static int MAX_ID = -1;

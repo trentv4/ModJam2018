@@ -21,7 +21,6 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.trentv.musicalenergy.common.MusicalObjects;
 import net.trentv.musicalenergy.common.element.Element;
 
 public abstract class ItemInstrument extends Item
@@ -47,9 +46,10 @@ public abstract class ItemInstrument extends Item
 	{
 		if (!worldIn.isRemote)
 		{
-			if (entityLiving.getItemInUseMaxCount() >= 40)
+			Element[] a = getCurrentElements(stack);
+			if (entityLiving.getItemInUseMaxCount() >= 10 * (a.length - 1))
 			{
-				doot(getCurrentElements(stack), entityLiving, worldIn, stack);
+				doot(a, entityLiving, worldIn, stack);
 			}
 		}
 	}
@@ -95,7 +95,7 @@ public abstract class ItemInstrument extends Item
 		}
 	}
 
-	public Element[] getCurrentElements(ItemStack heldItem)
+	public static final Element[] getCurrentElements(ItemStack heldItem)
 	{
 		Element[] e = new Element[] {};
 		if (heldItem.hasTagCompound())
@@ -113,11 +113,10 @@ public abstract class ItemInstrument extends Item
 				e = elements.toArray(new Element[elements.size()]);
 			}
 		}
-		e = new Element[] { MusicalObjects.FIRE, MusicalObjects.FIRE, MusicalObjects.LIFE, MusicalObjects.DEATH, MusicalObjects.AIR };
 		return e;
 	}
 
-	public void setCurrentElements(ItemStack heldItem, Element[] elements)
+	public static final void setCurrentElements(ItemStack heldItem, Element[] elements)
 	{
 		if (!heldItem.hasTagCompound())
 		{

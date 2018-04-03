@@ -8,6 +8,8 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+import net.trentv.musicalenergy.common.CommandTune;
 import net.trentv.musicalenergy.common.CommonProxy;
 import net.trentv.musicalenergy.common.MusicalObjects;
 
@@ -46,5 +48,11 @@ public class MusicalEnergy
 	public void postInit(FMLPostInitializationEvent event)
 	{
 		logger.info(MODID + " initialized");
+	}
+
+	@EventHandler
+	public void onServerStart(FMLServerStartingEvent event)
+	{
+		event.registerServerCommand(new CommandTune());
 	}
 }
