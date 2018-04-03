@@ -1,14 +1,14 @@
 [
 {
-  "modid": "examplemod",
-  "name": "Example Mod",
-  "description": "Example placeholder mod.",
+  "modid": "musicalenergy",
+  "name": "Musical Energy",
+  "description": "ModJam 2018 entry. Cast spells using music to choose elements?",
   "version": "${version}",
   "mcversion": "${mcversion}",
-  "url": "",
+  "url": "https://github.com/trentv4/ModJam2018",
   "updateUrl": "",
-  "authorList": ["ExampleDude"],
-  "credits": "The Forge and FML guys, for making this example",
+  "authorList": ["Trentv4"],
+  "credits": "MMD members for assistance in getting stuff done quickly.",
   "logoFile": "",
   "screenshots": [],
   "dependencies": []

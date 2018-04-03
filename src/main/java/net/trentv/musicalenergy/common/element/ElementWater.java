@@ -26,7 +26,6 @@ public class ElementWater extends Element
 	@Override
 	public void onProjectile(EntityLivingBase entity, World world, ItemStack stack)
 	{
-
 	}
 
 	@Override

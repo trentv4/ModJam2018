@@ -21,7 +21,6 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.trentv.musicalenergy.MusicalEnergy;
 import net.trentv.musicalenergy.common.MusicalObjects;
 import net.trentv.musicalenergy.common.element.Element;
 
@@ -48,17 +47,11 @@ public abstract class ItemInstrument extends Item
 	{
 		if (!worldIn.isRemote)
 		{
-			Element[] elements = getCurrentElements(stack);
-			String s = "Casting: ";
-			for (Element e : elements)
+			if (entityLiving.getItemInUseMaxCount() >= 40)
 			{
-				s += e.serialize() + " ";
+				doot(getCurrentElements(stack), entityLiving, worldIn, stack);
 			}
-			MusicalEnergy.logger.info(s);
-			Class c = this.getClass();
-			doot(elements, entityLiving, worldIn, stack);
 		}
-		entityLiving.playSound(soundEffect, 1, 1f);
 	}
 
 	@Override
@@ -78,12 +71,28 @@ public abstract class ItemInstrument extends Item
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
 	{
-		// TODO: implement control scheme
 		player.setActiveHand(hand);
 
-		Element[] elements = getCurrentElements(player.getHeldItem(hand));
-
 		return new ActionResult<>(EnumActionResult.SUCCESS, player.getHeldItem(hand));
+	}
+
+	@Override
+	public void onUsingTick(ItemStack stack, EntityLivingBase player, int count)
+	{
+		Element[] elements = getCurrentElements(stack);
+
+		int time = player.getItemInUseMaxCount();
+		int ticks = 10;
+		int elementID = (time / ticks);
+
+		if (elementID < elements.length)
+		{
+			if (time / (double) ticks == time / ticks)
+			{
+				float pitch = (elements[elementID].ID / (float) Element.MAX_ID) * 2;
+				player.playSound(soundEffect, 1, pitch);
+			}
+		}
 	}
 
 	public Element[] getCurrentElements(ItemStack heldItem)
@@ -104,7 +113,7 @@ public abstract class ItemInstrument extends Item
 				e = elements.toArray(new Element[elements.size()]);
 			}
 		}
-		e = new Element[] { MusicalObjects.AIR };
+		e = new Element[] { MusicalObjects.FIRE, MusicalObjects.FIRE, MusicalObjects.LIFE, MusicalObjects.DEATH, MusicalObjects.AIR };
 		return e;
 	}
 

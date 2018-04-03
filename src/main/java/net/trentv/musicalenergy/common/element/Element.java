@@ -18,6 +18,8 @@ public class Element
 {
 	private static final HashMap<String, Element> elements = new HashMap<String, Element>();
 	public final String NAME;
+	public final int ID;
+	public static int MAX_ID = -1;
 
 	static
 	{
@@ -27,6 +29,8 @@ public class Element
 	public Element(String name)
 	{
 		this.NAME = name;
+		this.ID = MAX_ID;
+		MAX_ID++;
 		if (elements.containsKey(name))
 		{
 			MusicalEnergy.logger.warn("Element " + name + " already exists and must be unique.");
