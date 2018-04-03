@@ -8,7 +8,15 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.trentv.musicalenergy.MusicalEnergy;
 import net.trentv.musicalenergy.common.element.ElementAir;
+import net.trentv.musicalenergy.common.element.ElementDeath;
+import net.trentv.musicalenergy.common.element.ElementEarth;
+import net.trentv.musicalenergy.common.element.ElementFire;
+import net.trentv.musicalenergy.common.element.ElementLife;
+import net.trentv.musicalenergy.common.element.ElementWater;
+import net.trentv.musicalenergy.common.item.ItemFlute;
+import net.trentv.musicalenergy.common.item.ItemHarmonica;
 import net.trentv.musicalenergy.common.item.ItemTrumpet;
+import net.trentv.musicalenergy.common.item.ItemVuvuzela;
 
 public class MusicalObjects
 {
@@ -28,9 +36,9 @@ public class MusicalObjects
 	public static final SoundEvent HARMONICA_SOUND = new SoundEventMusical(new ResourceLocation(MusicalEnergy.MODID, "item.harmonica.use"));
 
 	public static final Item TRUMPET = new ItemTrumpet(TRUMPET_SOUND).setRegistryName(MusicalEnergy.MODID, "trumpet").setUnlocalizedName("trumpet").setCreativeTab(CreativeTabs.TOOLS);
-	public static final Item FLUTE = new ItemTrumpet(FLUTE_SOUND).setRegistryName(MusicalEnergy.MODID, "flute").setUnlocalizedName("flute").setCreativeTab(CreativeTabs.TOOLS);
-	public static final Item VUVUZELA = new ItemTrumpet(VUVUZELA_SOUND).setRegistryName(MusicalEnergy.MODID, "vuvuzela").setUnlocalizedName("vuvuzela").setCreativeTab(CreativeTabs.TOOLS);
-	public static final Item HARMONICA = new ItemTrumpet(HARMONICA_SOUND).setRegistryName(MusicalEnergy.MODID, "harmonica").setUnlocalizedName("harmonica").setCreativeTab(CreativeTabs.TOOLS);
+	public static final Item FLUTE = new ItemFlute(FLUTE_SOUND).setRegistryName(MusicalEnergy.MODID, "flute").setUnlocalizedName("flute").setCreativeTab(CreativeTabs.TOOLS);
+	public static final Item VUVUZELA = new ItemVuvuzela(VUVUZELA_SOUND).setRegistryName(MusicalEnergy.MODID, "vuvuzela").setUnlocalizedName("vuvuzela").setCreativeTab(CreativeTabs.TOOLS);
+	public static final Item HARMONICA = new ItemHarmonica(HARMONICA_SOUND).setRegistryName(MusicalEnergy.MODID, "harmonica").setUnlocalizedName("harmonica").setCreativeTab(CreativeTabs.TOOLS);
 
 	/*
 	 * Elements:
@@ -41,12 +49,12 @@ public class MusicalObjects
 	 * death: large damage to target, small to caster
 	 * life : healing
 	 */
-	public static final ElementAir FIRE = new ElementAir("fire");
-	public static final ElementAir WATER = new ElementAir("water");
-	public static final ElementAir EARTH = new ElementAir("earth");
+	public static final ElementFire FIRE = new ElementFire("fire");
+	public static final ElementWater WATER = new ElementWater("water");
+	public static final ElementEarth EARTH = new ElementEarth("earth");
 	public static final ElementAir AIR = new ElementAir("air");
-	public static final ElementAir DEATH = new ElementAir("death");
-	public static final ElementAir LIFE = new ElementAir("life");
+	public static final ElementDeath DEATH = new ElementDeath("death");
+	public static final ElementLife LIFE = new ElementLife("life");
 
 	public static final void init()
 	{

@@ -21,6 +21,8 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.trentv.musicalenergy.MusicalEnergy;
+import net.trentv.musicalenergy.common.MusicalObjects;
 import net.trentv.musicalenergy.common.element.Element;
 
 public abstract class ItemInstrument extends Item
@@ -44,7 +46,18 @@ public abstract class ItemInstrument extends Item
 	@Override
 	public void onPlayerStoppedUsing(ItemStack stack, World worldIn, EntityLivingBase entityLiving, int timeLeft)
 	{
-		doot(getCurrentElements(stack), entityLiving, worldIn, stack);
+		if (!worldIn.isRemote)
+		{
+			Element[] elements = getCurrentElements(stack);
+			String s = "Casting: ";
+			for (Element e : elements)
+			{
+				s += e.serialize() + " ";
+			}
+			MusicalEnergy.logger.info(s);
+			Class c = this.getClass();
+			doot(elements, entityLiving, worldIn, stack);
+		}
 		entityLiving.playSound(soundEffect, 1, 1f);
 	}
 
@@ -91,6 +104,7 @@ public abstract class ItemInstrument extends Item
 				e = elements.toArray(new Element[elements.size()]);
 			}
 		}
+		e = new Element[] { MusicalObjects.DEATH };
 		return e;
 	}
 
