@@ -41,20 +41,23 @@ public class Element
 		}
 	}
 
-	public void onAOE(EntityLivingBase entity, World world, ItemStack stack)
+	public int onAOE(EntityLivingBase entity, World world, ItemStack stack)
 	{
+		return 0;
 	}
 
-	public void onBeam(EntityLivingBase entity, World world, ItemStack stack)
+	public int onBeam(EntityLivingBase entity, World world, ItemStack stack)
 	{
+		return 0;
 	}
 
 	public void onProjectile(EntityLivingBase entity, World world, ItemStack stack)
 	{
 	}
 
-	public void onSelfCast(EntityLivingBase entity, World world, ItemStack stack)
+	public int onSelfCast(EntityLivingBase entity, World world, ItemStack stack)
 	{
+		return 0;
 	}
 
 	public String serialize()

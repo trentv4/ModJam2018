@@ -15,26 +15,28 @@ public class ElementLife extends Element
 	}
 
 	@Override
-	public void onAOE(EntityLivingBase entity, World world, ItemStack stack)
+	public int onAOE(EntityLivingBase entity, World world, ItemStack stack)
 	{
 		List<Entity> a = getEntitiesNearby(5, entity, world);
 		for (Entity target : a)
 		{
 			if (target instanceof EntityLivingBase)
 			{
-				((EntityLivingBase) target).heal(2 * 2);
+				((EntityLivingBase) target).heal(2);
 			}
 		}
+		return 0;
 	}
 
 	@Override
-	public void onBeam(EntityLivingBase entity, World world, ItemStack stack)
+	public int onBeam(EntityLivingBase entity, World world, ItemStack stack)
 	{
 		EntityLivingBase target = raycastEntity(world, entity);
 		if (target != null)
 		{
-			target.heal(4 * 2);
+			target.heal(5);
 		}
+		return 0;
 	}
 
 	@Override
@@ -43,8 +45,9 @@ public class ElementLife extends Element
 	}
 
 	@Override
-	public void onSelfCast(EntityLivingBase entity, World world, ItemStack stack)
+	public int onSelfCast(EntityLivingBase entity, World world, ItemStack stack)
 	{
-		entity.heal(3 * 2);
+		entity.heal(3);
+		return 0;
 	}
 }

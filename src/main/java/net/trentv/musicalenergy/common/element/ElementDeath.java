@@ -16,7 +16,7 @@ public class ElementDeath extends Element
 	}
 
 	@Override
-	public void onAOE(EntityLivingBase entity, World world, ItemStack stack)
+	public int onAOE(EntityLivingBase entity, World world, ItemStack stack)
 	{
 		List<Entity> a = getEntitiesNearby(5, entity, world);
 		int entityCount = 0;
@@ -28,18 +28,18 @@ public class ElementDeath extends Element
 				entityCount++;
 			}
 		}
-		entity.attackEntityFrom(DamageSource.MAGIC, entityCount * 2);
+		return entityCount * 2;
 	}
 
 	@Override
-	public void onBeam(EntityLivingBase entity, World world, ItemStack stack)
+	public int onBeam(EntityLivingBase entity, World world, ItemStack stack)
 	{
 		EntityLivingBase target = raycastEntity(world, entity);
 		if (target != null)
 		{
 			target.attackEntityFrom(DamageSource.MAGIC, 3 * 2);
-			entity.attackEntityFrom(DamageSource.MAGIC, 1 * 2);
 		}
+		return 2;
 	}
 
 	@Override
@@ -48,8 +48,8 @@ public class ElementDeath extends Element
 	}
 
 	@Override
-	public void onSelfCast(EntityLivingBase entity, World world, ItemStack stack)
+	public int onSelfCast(EntityLivingBase entity, World world, ItemStack stack)
 	{
-		entity.attackEntityFrom(DamageSource.MAGIC, 4 * 2);
+		return 4 * 2;
 	}
 }

@@ -16,7 +16,7 @@ public class ElementEarth extends Element
 	}
 
 	@Override
-	public void onAOE(EntityLivingBase entity, World world, ItemStack stack)
+	public int onAOE(EntityLivingBase entity, World world, ItemStack stack)
 	{
 		List<Entity> a = getEntitiesNearby(5, entity, world);
 		for (Entity target : a)
@@ -26,16 +26,19 @@ public class ElementEarth extends Element
 				target.attackEntityFrom(DamageSource.MAGIC, 2 * 2);
 			}
 		}
+		return 0;
 	}
 
 	@Override
-	public void onBeam(EntityLivingBase entity, World world, ItemStack stack)
+	public int onBeam(EntityLivingBase entity, World world, ItemStack stack)
 	{
 		EntityLivingBase target = raycastEntity(world, entity);
 		if (target != null)
 		{
 			target.attackEntityFrom(DamageSource.MAGIC, 2 * 2);
+			target.setEntityInvulnerable(false);
 		}
+		return 0;
 	}
 
 	@Override
@@ -44,8 +47,8 @@ public class ElementEarth extends Element
 	}
 
 	@Override
-	public void onSelfCast(EntityLivingBase entity, World world, ItemStack stack)
+	public int onSelfCast(EntityLivingBase entity, World world, ItemStack stack)
 	{
-		entity.attackEntityFrom(DamageSource.MAGIC, 2 * 2);
+		return 4;
 	}
 }

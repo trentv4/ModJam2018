@@ -16,7 +16,7 @@ public class ElementFire extends Element
 	}
 
 	@Override
-	public void onAOE(EntityLivingBase entity, World world, ItemStack stack)
+	public int onAOE(EntityLivingBase entity, World world, ItemStack stack)
 	{
 		List<Entity> a = getEntitiesNearby(5, entity, world);
 		for (Entity target : a)
@@ -27,10 +27,11 @@ public class ElementFire extends Element
 				target.attackEntityFrom(DamageSource.ON_FIRE, 1 * 2);
 			}
 		}
+		return 0;
 	}
 
 	@Override
-	public void onBeam(EntityLivingBase entity, World world, ItemStack stack)
+	public int onBeam(EntityLivingBase entity, World world, ItemStack stack)
 	{
 		EntityLivingBase target = raycastEntity(world, entity);
 		if (target != null)
@@ -38,6 +39,7 @@ public class ElementFire extends Element
 			target.setFire(4);
 			target.attackEntityFrom(DamageSource.ON_FIRE, 2 * 2);
 		}
+		return 0;
 	}
 
 	@Override
@@ -46,9 +48,9 @@ public class ElementFire extends Element
 	}
 
 	@Override
-	public void onSelfCast(EntityLivingBase entity, World world, ItemStack stack)
+	public int onSelfCast(EntityLivingBase entity, World world, ItemStack stack)
 	{
 		entity.setFire(4);
-		entity.attackEntityFrom(DamageSource.ON_FIRE, 1 * 2);
+		return 2;
 	}
 }
