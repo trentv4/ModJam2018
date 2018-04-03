@@ -43,7 +43,7 @@ public class MusicalObjects
 	/*
 	 * Elements:
 	 * fire : sets target on fire, small damage
-	 * water: slowness
+	 * water: slowness, extinguishes
 	 * earth: medium damage
 	 * air  : move backwards extreme
 	 * death: large damage to target, small to caster
