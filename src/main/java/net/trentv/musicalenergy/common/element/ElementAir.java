@@ -23,7 +23,7 @@ public class ElementAir extends Element
 			if (target instanceof EntityLivingBase)
 			{
 				target.addVelocity(0, 0.5, 0);
-				entity.velocityChanged = true;
+				target.velocityChanged = true;
 			}
 		}
 	}
@@ -34,8 +34,8 @@ public class ElementAir extends Element
 		EntityLivingBase target = raycastEntity(world, entity);
 		if (target != null)
 		{
-			entity.addVelocity(0, 0.5, 0);
-			entity.velocityChanged = true;
+			target.addVelocity(0, 0.5, 0);
+			target.velocityChanged = true;
 		}
 	}
 
