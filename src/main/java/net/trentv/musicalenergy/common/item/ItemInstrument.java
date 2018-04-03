@@ -104,7 +104,7 @@ public abstract class ItemInstrument extends Item
 				e = elements.toArray(new Element[elements.size()]);
 			}
 		}
-		e = new Element[] { MusicalObjects.LIFE };
+		e = new Element[] { MusicalObjects.FIRE };
 		return e;
 	}
 
