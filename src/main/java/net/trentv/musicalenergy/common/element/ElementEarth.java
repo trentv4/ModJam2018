@@ -21,7 +21,10 @@ public class ElementEarth extends Element
 		List<Entity> a = getEntitiesNearby(5, entity, world);
 		for (Entity target : a)
 		{
-			target.attackEntityFrom(DamageSource.MAGIC, 2 * 2);
+			if (target instanceof EntityLivingBase)
+			{
+				target.attackEntityFrom(DamageSource.MAGIC, 2 * 2);
+			}
 		}
 	}
 
