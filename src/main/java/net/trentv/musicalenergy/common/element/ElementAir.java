@@ -5,6 +5,7 @@ import java.util.List;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 public class ElementAir extends Element
@@ -22,7 +23,9 @@ public class ElementAir extends Element
 		{
 			if (target instanceof EntityLivingBase)
 			{
-				target.addVelocity(0, 0.5, 0);
+				Vec3d vector = new Vec3d(target.posX - entity.posX, target.posY - entity.posY, target.posZ - entity.posZ);
+
+				target.addVelocity(vector.x, vector.y, vector.z);
 				target.velocityChanged = true;
 			}
 		}
@@ -34,7 +37,8 @@ public class ElementAir extends Element
 		EntityLivingBase target = raycastEntity(world, entity);
 		if (target != null)
 		{
-			target.addVelocity(0, 0.5, 0);
+			Vec3d lookVec = entity.getLookVec();
+			target.addVelocity(lookVec.x, lookVec.y, lookVec.z);
 			target.velocityChanged = true;
 		}
 	}
