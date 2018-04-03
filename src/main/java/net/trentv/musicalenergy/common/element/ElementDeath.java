@@ -6,8 +6,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class ElementDeath extends Element
@@ -36,7 +34,7 @@ public class ElementDeath extends Element
 	@Override
 	public void onBeam(EntityLivingBase entity, World world, ItemStack stack)
 	{
-		Entity target = raycastEntity(world, entity).entityHit;
+		EntityLivingBase target = raycastEntity(world, entity);
 		if (target != null)
 		{
 			target.attackEntityFrom(DamageSource.MAGIC, 3 * 2);

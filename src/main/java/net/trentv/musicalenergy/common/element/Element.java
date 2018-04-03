@@ -74,7 +74,7 @@ public class Element
 	}
 
 	// Credit to Leviathan#0044 in MMD for this method. Slightly modified for my use.
-	public static final RayTraceResult raycastEntity(World world, Entity caster)
+	public static final EntityLivingBase raycastEntity(World world, Entity caster)
 	{
 		int rayDistance = 20;
 		Vec3d startVec = caster.getPositionEyes(1);
@@ -111,11 +111,8 @@ public class Element
 			}
 		}
 
-		if (hitEntity != null)
-			result = new RayTraceResult(hitEntity, hitEntity.getPositionVector());
-		if (result == null)
-			result = new RayTraceResult(RayTraceResult.Type.MISS, endVec, null, new BlockPos(endVec));
-
-		return result;
+		if (hitEntity != null && hitEntity instanceof EntityLivingBase)
+			return (EntityLivingBase) hitEntity;
+		return null;
 	}
 }
