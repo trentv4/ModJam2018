@@ -25,9 +25,9 @@ public class MusicalObjects
 
 	/*
 	 * Instruments:
-	 * trumpet   : AoE effect
+	 * trumpet   : projectile
 	 * flute     : beam effect
-	 * vuvuzela  : projectile
+	 * vuvuzela  : AoE effect
 	 * harmonica : self-cast
 	 */
 	public static final SoundEvent TRUMPET_SOUND = new SoundEventMusical(new ResourceLocation(MusicalEnergy.MODID, "item.trumpet.use"));
@@ -58,7 +58,7 @@ public class MusicalObjects
 
 	public static final void init()
 	{
-		items.add(TRUMPET);
+		// items.add(TRUMPET);
 		items.add(FLUTE);
 		items.add(VUVUZELA);
 		items.add(HARMONICA);

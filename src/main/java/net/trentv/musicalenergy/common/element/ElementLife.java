@@ -26,12 +26,11 @@ public class ElementLife extends Element
 	@Override
 	public void onProjectile(EntityLivingBase entity, World world, ItemStack stack)
 	{
-
 	}
 
 	@Override
 	public void onSelfCast(EntityLivingBase entity, World world, ItemStack stack)
 	{
-
+		entity.heal(2);
 	}
 }

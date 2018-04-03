@@ -16,9 +16,5 @@ public class ItemTrumpet extends ItemInstrument
 	@Override
 	public void doot(Element[] elements, EntityLivingBase entity, World world, ItemStack stack)
 	{
-		for (Element e : elements)
-		{
-			e.onAOE(entity, world, stack);
-		}
 	}
 }

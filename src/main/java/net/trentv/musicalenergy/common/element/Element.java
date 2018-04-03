@@ -1,6 +1,7 @@
 package net.trentv.musicalenergy.common.element;
 
 import java.util.HashMap;
+import java.util.List;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -62,6 +63,14 @@ public class Element
 		if (elements.containsKey(str))
 			return elements.get(str);
 		return elements.get("null");
+	}
+
+	public static final List<Entity> getEntitiesNearby(int radius, EntityLivingBase entity, World world)
+	{
+		BlockPos pos1 = entity.getPosition().up(radius).north(radius).east(radius);
+		BlockPos pos2 = entity.getPosition().down(radius).south(radius).west(radius);
+		AxisAlignedBB boundingBox = new AxisAlignedBB(pos1, pos2);
+		return world.getEntitiesInAABBexcluding(entity, boundingBox, null);
 	}
 
 	// Credit to Leviathan#0044 in MMD for this method. Slightly modified for my use.

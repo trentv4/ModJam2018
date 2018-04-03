@@ -20,11 +20,7 @@ public class ElementDeath extends Element
 	@Override
 	public void onAOE(EntityLivingBase entity, World world, ItemStack stack)
 	{
-		int radius = 5;
-		BlockPos pos1 = entity.getPosition().up(radius).north(radius).east(radius);
-		BlockPos pos2 = entity.getPosition().down(radius).south(radius).west(radius);
-		AxisAlignedBB boundingBox = new AxisAlignedBB(pos1, pos2);
-		List<Entity> a = world.getEntitiesInAABBexcluding(entity, boundingBox, null);
+		List<Entity> a = getEntitiesNearby(5, entity, world);
 		int entityCount = 0;
 		for (Entity target : a)
 		{

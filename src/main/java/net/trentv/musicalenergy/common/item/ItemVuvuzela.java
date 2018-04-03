@@ -18,7 +18,7 @@ public class ItemVuvuzela extends ItemInstrument
 	{
 		for (Element e : elements)
 		{
-			e.onProjectile(entity, world, stack);
+			e.onAOE(entity, world, stack);
 		}
 	}
 }
