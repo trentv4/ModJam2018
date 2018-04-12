@@ -21,11 +21,12 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.trentv.musicalenergy.common.GuiHandlerCasting;
 import net.trentv.musicalenergy.common.element.Element;
 
 public abstract class ItemInstrument extends Item
 {
-	protected SoundEvent soundEffect;
+	public SoundEvent soundEffect;
 
 	public ItemInstrument(SoundEvent soundEffect)
 	{
@@ -72,6 +73,8 @@ public abstract class ItemInstrument extends Item
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
 	{
 		player.setActiveHand(hand);
+
+		GuiHandlerCasting.openGui(player, GuiHandlerCasting.CASTING, player.getPosition());
 
 		return new ActionResult<>(EnumActionResult.SUCCESS, player.getHeldItem(hand));
 	}

@@ -9,18 +9,23 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.trentv.musicalenergy.common.CommandTune;
 import net.trentv.musicalenergy.common.CommonProxy;
+import net.trentv.musicalenergy.common.GuiHandlerCasting;
 import net.trentv.musicalenergy.common.MusicalObjects;
 
 @Mod(modid = MusicalEnergy.MODID, version = MusicalEnergy.VERSION)
 public class MusicalEnergy
 {
-	@SidedProxy(clientSide = "net.trentv.musicalenergy.client.ClientProxy", serverSide = "net.trentv.musicalenergy.server.ServerProxy")
-	public static CommonProxy proxy;
-
 	public static final String MODID = "musicalenergy";
 	public static final String VERSION = "1.0";
+
+	@Mod.Instance(MODID)
+	public static MusicalEnergy instance;
+
+	@SidedProxy(clientSide = "net.trentv.musicalenergy.client.ClientProxy", serverSide = "net.trentv.musicalenergy.server.ServerProxy")
+	public static CommonProxy proxy;
 
 	public static Logger logger;
 
@@ -36,6 +41,8 @@ public class MusicalEnergy
 		logger = event.getModLog();
 
 		MusicalObjects.init();
+
+		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandlerCasting());
 		proxy.registerEventHandlers();
 	}
 
