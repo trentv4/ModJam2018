@@ -1,9 +1,11 @@
 package net.trentv.musicalenergy.client;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.trentv.musicalenergy.MusicalEnergy;
 import net.trentv.musicalenergy.common.MusicalObjects;
@@ -13,7 +15,7 @@ import net.trentv.musicalenergy.common.item.ItemInstrument;
 public class GuiCasting extends GuiScreen
 {
 	private static final ResourceLocation BACKGROUND = new ResourceLocation(MusicalEnergy.MODID, "textures/gui/casting.png");
-	private Element[] elements = new Element[5];
+	private ArrayList<Element> elements = new ArrayList<Element>();
 	private EntityPlayer player;
 
 	public GuiCasting(EntityPlayer player)
@@ -34,14 +36,23 @@ public class GuiCasting extends GuiScreen
 		mc.getTextureManager().bindTexture(BACKGROUND);
 
 		int startWidth = (width / 2) - 34;
-		for (int i = 0; i < elements.length; i++)
+		for (int i = 0; i < elements.size(); i++)
 		{
-			if (elements[i] != null)
-			{
-				int pos = elements[i].ID;
-				drawTexturedModalRect(startWidth + (15 * i), height - 60, 10 * pos, 0, 10, 15);
-			}
+			drawTexturedModalRect(startWidth + (15 * i), height - 60, 10 * elements.get(i).ID, 0, 10, 15);
 		}
+	}
+
+	@Override
+	protected void mouseReleased(int mouseX, int mouseY, int state)
+	{
+		this.mc.displayGuiScreen((GuiScreen) null);
+
+		ItemStack heldItem = player.getHeldItem(player.getActiveHand());
+		ItemInstrument instrument = (ItemInstrument) heldItem.getItem();
+		Element[] newElements = elements.toArray(new Element[elements.size()]);
+		instrument.doot(newElements, player, player.getEntityWorld(), heldItem);
+
+		super.mouseReleased(mouseX, mouseY, state);
 	}
 
 	@Override
@@ -71,16 +82,12 @@ public class GuiCasting extends GuiScreen
 		}
 		if (newElement != null)
 		{
-			for (int i = 0; i < elements.length; i++)
+			if (elements.size() < 5)
 			{
-				if (elements[i] == null)
-				{
-					elements[i] = newElement;
-					float pitch = (newElement.ID / (float) Element.MAX_ID) * 2;
-					ItemInstrument instrument = (ItemInstrument) player.getHeldItem(player.getActiveHand()).getItem();
-					player.playSound(instrument.soundEffect, 1, pitch);
-					break;
-				}
+				elements.add(newElement);
+				float pitch = (newElement.ID / (float) Element.MAX_ID) * 2;
+				ItemInstrument instrument = (ItemInstrument) player.getHeldItem(player.getActiveHand()).getItem();
+				player.playSound(instrument.soundEffect, 1, pitch);
 			}
 		}
 		super.keyTyped(typedChar, keyCode);

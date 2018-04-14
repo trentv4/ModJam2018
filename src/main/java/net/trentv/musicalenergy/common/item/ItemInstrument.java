@@ -1,7 +1,5 @@
 package net.trentv.musicalenergy.common.item;
 
-import java.util.ArrayList;
-
 import javax.annotation.Nullable;
 
 import net.minecraft.entity.EntityLivingBase;
@@ -10,9 +8,6 @@ import net.minecraft.item.EnumAction;
 import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
-import net.minecraft.nbt.NBTTagString;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
@@ -42,18 +37,7 @@ public abstract class ItemInstrument extends Item
 		});
 	}
 
-	@Override
-	public void onPlayerStoppedUsing(ItemStack stack, World worldIn, EntityLivingBase entityLiving, int timeLeft)
-	{
-		if (!worldIn.isRemote)
-		{
-			Element[] a = getCurrentElements(stack);
-			if (entityLiving.getItemInUseMaxCount() >= 10 * (a.length - 1))
-			{
-				doot(a, entityLiving, worldIn, stack);
-			}
-		}
-	}
+	public abstract void doot(Element[] elements, EntityLivingBase entity, World world, ItemStack stack);
 
 	@Override
 	public EnumAction getItemUseAction(ItemStack stack)
@@ -67,8 +51,6 @@ public abstract class ItemInstrument extends Item
 		return 72000;
 	}
 
-	public abstract void doot(Element[] elements, EntityLivingBase entity, World world, ItemStack stack);
-
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
 	{
@@ -77,61 +59,5 @@ public abstract class ItemInstrument extends Item
 		GuiHandlerCasting.openGui(player, GuiHandlerCasting.CASTING, player.getPosition());
 
 		return new ActionResult<>(EnumActionResult.SUCCESS, player.getHeldItem(hand));
-	}
-
-	@Override
-	public void onUsingTick(ItemStack stack, EntityLivingBase player, int count)
-	{
-		Element[] elements = getCurrentElements(stack);
-
-		int time = player.getItemInUseMaxCount();
-		int ticks = 10;
-		int elementID = (time / ticks);
-
-		if (elementID < elements.length)
-		{
-			if (time / (double) ticks == time / ticks)
-			{
-				float pitch = (elements[elementID].ID / (float) Element.MAX_ID) * 2;
-				player.playSound(soundEffect, 1, pitch);
-			}
-		}
-	}
-
-	public static final Element[] getCurrentElements(ItemStack heldItem)
-	{
-		Element[] e = new Element[] {};
-		if (heldItem.hasTagCompound())
-		{
-			NBTTagList elementList = heldItem.getTagCompound().getTagList("elements", 8);
-			ArrayList<Element> elements = new ArrayList<Element>();
-			if (elementList.tagCount() > 0)
-			{
-				for (int i = 0; i < elementList.tagCount(); i++)
-				{
-					String tag = elementList.getStringTagAt(i);
-					Element s = Element.deserialize(tag);
-					elements.add(s);
-				}
-				e = elements.toArray(new Element[elements.size()]);
-			}
-		}
-		return e;
-	}
-
-	public static final void setCurrentElements(ItemStack heldItem, Element[] elements)
-	{
-		if (!heldItem.hasTagCompound())
-		{
-			heldItem.setTagCompound(new NBTTagCompound());
-		}
-
-		NBTTagCompound baseTag = heldItem.getTagCompound();
-		NBTTagList elementList = new NBTTagList();
-		for (Element e : elements)
-		{
-			elementList.appendTag(new NBTTagString(e.serialize()));
-		}
-		baseTag.setTag("elements", elementList);
 	}
 }
