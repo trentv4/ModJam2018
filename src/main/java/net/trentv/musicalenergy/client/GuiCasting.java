@@ -39,7 +39,7 @@ public class GuiCasting extends GuiScreen
 		int startWidth = (width / 2) - 34;
 		for (int i = 0; i < elements.size(); i++)
 		{
-			drawTexturedModalRect(startWidth + (15 * i), height - 60, 10 * elements.get(i).ID, 0, 10, 15);
+			drawTexturedModalRect(startWidth + (15 * i), height - 60, 10 * (elements.get(i).ID - 1), 0, 10, 15);
 		}
 	}
 
@@ -77,10 +77,10 @@ public class GuiCasting extends GuiScreen
 				newElement = MusicalObjects.AIR;
 				break;
 			case 's':
-				newElement = MusicalObjects.DEATH;
+				newElement = MusicalObjects.LIFE;
 				break;
 			case 'd':
-				newElement = MusicalObjects.LIFE;
+				newElement = MusicalObjects.DEATH;
 				break;
 		}
 		if (newElement != null)

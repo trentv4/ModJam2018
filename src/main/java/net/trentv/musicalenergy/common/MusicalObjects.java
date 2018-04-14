@@ -53,8 +53,8 @@ public class MusicalObjects
 	public static final ElementWater WATER = new ElementWater("water");
 	public static final ElementEarth EARTH = new ElementEarth("earth");
 	public static final ElementAir AIR = new ElementAir("air");
-	public static final ElementDeath DEATH = new ElementDeath("death");
 	public static final ElementLife LIFE = new ElementLife("life");
+	public static final ElementDeath DEATH = new ElementDeath("death");
 
 	public static final void init()
 	{

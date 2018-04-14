@@ -20,10 +20,10 @@ public class MusicalEnergyPacketHandler
 	{
 		public SpellMessage()
 		{
-			this.spellIDs = new int[] {};
+			this.spellIDs = new int[0];
 		}
 
-		private final int[] spellIDs;
+		private int[] spellIDs;
 
 		public SpellMessage(int... spellIDs)
 		{
@@ -33,13 +33,11 @@ public class MusicalEnergyPacketHandler
 		@Override
 		public void fromBytes(ByteBuf buf)
 		{
-			for (int i = 0; i < 5; i++)
+			spellIDs = new int[buf.readableBytes() >> 2];
+			for (int i = 0; i < spellIDs.length; i++)
 			{
-				if (buf.readableBytes() < 4)
-					break;
 				spellIDs[i] = buf.readInt();
 			}
-			System.out.println();
 		}
 
 		@Override
@@ -47,7 +45,7 @@ public class MusicalEnergyPacketHandler
 		{
 			for (int i = 0; i < spellIDs.length; i++)
 			{
-				buf.setInt(i * 4, spellIDs[i]);
+				buf.writeInt(spellIDs[i]);
 			}
 		}
 	}
@@ -68,7 +66,7 @@ public class MusicalEnergyPacketHandler
 					Element[] newElements = new Element[message.spellIDs.length];
 					for (int i = 0; i < newElements.length; i++)
 					{
-						newElements[i] = Element.elements.get(i);
+						newElements[i] = Element.elements.get(message.spellIDs[i]);
 					}
 					instrument.doot(newElements, player, player.getEntityWorld(), heldItem);
 				}
