@@ -5,9 +5,10 @@ import java.util.ArrayList;
 
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.trentv.musicalenergy.MusicalEnergy;
+import net.trentv.musicalenergy.MusicalEnergyPacketHandler;
+import net.trentv.musicalenergy.MusicalEnergyPacketHandler.SpellMessage;
 import net.trentv.musicalenergy.common.MusicalObjects;
 import net.trentv.musicalenergy.common.element.Element;
 import net.trentv.musicalenergy.common.item.ItemInstrument;
@@ -47,10 +48,12 @@ public class GuiCasting extends GuiScreen
 	{
 		this.mc.displayGuiScreen((GuiScreen) null);
 
-		ItemStack heldItem = player.getHeldItem(player.getActiveHand());
-		ItemInstrument instrument = (ItemInstrument) heldItem.getItem();
-		Element[] newElements = elements.toArray(new Element[elements.size()]);
-		instrument.doot(newElements, player, player.getEntityWorld(), heldItem);
+		int[] ids = new int[elements.size()];
+		for (int i = 0; i < ids.length; i++)
+		{
+			ids[i] = elements.get(i).ID;
+		}
+		MusicalEnergyPacketHandler.INSTANCE.sendToServer(new SpellMessage(ids));
 
 		super.mouseReleased(mouseX, mouseY, state);
 	}

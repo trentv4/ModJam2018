@@ -1,6 +1,6 @@
 package net.trentv.musicalenergy.common.element;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.entity.Entity;
@@ -12,14 +12,13 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import net.trentv.musicalenergy.MusicalEnergy;
 
 public class Element
 {
-	public static final HashMap<String, Element> elements = new HashMap<String, Element>();
+	public static final ArrayList<Element> elements = new ArrayList<Element>();
 	public final String NAME;
 	public final int ID;
-	public static int MAX_ID = -1;
+	public static int MAX_ID = 0;
 
 	static
 	{
@@ -31,14 +30,7 @@ public class Element
 		this.NAME = name;
 		this.ID = MAX_ID;
 		MAX_ID++;
-		if (elements.containsKey(name))
-		{
-			MusicalEnergy.logger.warn("Element " + name + " already exists and must be unique.");
-		}
-		else
-		{
-			elements.put(name, this);
-		}
+		elements.add(this);
 	}
 
 	public int onAOE(EntityLivingBase entity, World world, ItemStack stack)
@@ -58,18 +50,6 @@ public class Element
 	public int onSelfCast(EntityLivingBase entity, World world, ItemStack stack)
 	{
 		return 0;
-	}
-
-	public String serialize()
-	{
-		return NAME;
-	}
-
-	public static Element deserialize(String str)
-	{
-		if (elements.containsKey(str))
-			return elements.get(str);
-		return elements.get("null");
 	}
 
 	public static final List<Entity> getEntitiesNearby(int radius, EntityLivingBase entity, World world)
