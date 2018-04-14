@@ -7,6 +7,7 @@ import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.trentv.musicalenergy.MusicalEnergy;
+import net.trentv.musicalenergy.common.element.Element;
 import net.trentv.musicalenergy.common.element.ElementAir;
 import net.trentv.musicalenergy.common.element.ElementDeath;
 import net.trentv.musicalenergy.common.element.ElementEarth;
@@ -59,6 +60,7 @@ public class MusicalObjects
 		sounds.add(FLUTE_SOUND);
 		sounds.add(VUVUZELA_SOUND);
 		sounds.add(HARMONICA_SOUND);
+		Element.registerElements(FIRE, WATER, EARTH, AIR, LIFE, DEATH);
 	}
 
 	private static class SoundEventMusical extends SoundEvent

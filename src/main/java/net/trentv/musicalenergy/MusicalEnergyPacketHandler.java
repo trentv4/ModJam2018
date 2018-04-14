@@ -71,7 +71,7 @@ public class MusicalEnergyPacketHandler
 					Element[] newElements = new Element[message.spellIDs.length];
 					for (int i = 0; i < newElements.length; i++)
 					{
-						newElements[i] = Element.elements.get(message.spellIDs[i]);
+						newElements[i] = Element.ELEMENTS.get(message.spellIDs[i]);
 					}
 					instrument.doot(newElements, player, player.getEntityWorld(), heldItem);
 				}

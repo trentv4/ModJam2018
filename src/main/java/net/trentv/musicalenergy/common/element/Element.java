@@ -16,7 +16,7 @@ import net.minecraft.world.World;
 
 public class Element
 {
-	public static final ArrayList<Element> elements = new ArrayList<Element>();
+	public static final ArrayList<Element> ELEMENTS = new ArrayList<Element>();
 	public final String NAME;
 	public final int ID;
 	public static int MAX_ID = 0;
@@ -31,7 +31,14 @@ public class Element
 		this.NAME = name;
 		this.ID = MAX_ID;
 		MAX_ID++;
-		elements.add(this);
+	}
+
+	public static final void registerElements(Element... registrants)
+	{
+		for (Element e : registrants)
+		{
+			ELEMENTS.add(e);
+		}
 	}
 
 	/* Stubs for effects depending on different instruments */
