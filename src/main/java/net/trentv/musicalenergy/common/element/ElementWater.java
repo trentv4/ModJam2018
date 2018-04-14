@@ -17,7 +17,7 @@ public class ElementWater extends Element
 	}
 
 	@Override
-	public int onAOE(EntityLivingBase entity, World world, ItemStack stack)
+	public void onAOE(EntityLivingBase entity, World world, ItemStack stack)
 	{
 		List<Entity> list = getEntitiesNearby(5, entity, world);
 		for (Entity t : list)
@@ -35,11 +35,10 @@ public class ElementWater extends Element
 				target.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, duration, 1));
 			}
 		}
-		return 0;
 	}
 
 	@Override
-	public int onBeam(EntityLivingBase entity, World world, ItemStack stack)
+	public void onBeam(EntityLivingBase entity, World world, ItemStack stack)
 	{
 		EntityLivingBase target = raycastEntity(world, entity);
 		if (target != null)
@@ -53,7 +52,6 @@ public class ElementWater extends Element
 			}
 			target.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, duration, 1));
 		}
-		return 0;
 	}
 
 	@Override
@@ -62,7 +60,7 @@ public class ElementWater extends Element
 	}
 
 	@Override
-	public int onSelfCast(EntityLivingBase entity, World world, ItemStack stack)
+	public void onSelfCast(EntityLivingBase entity, World world, ItemStack stack)
 	{
 		entity.extinguish();
 		PotionEffect a = entity.getActivePotionEffect(MobEffects.SLOWNESS);
@@ -72,6 +70,5 @@ public class ElementWater extends Element
 			duration += a.getDuration();
 		}
 		entity.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, duration, 1));
-		return 0;
 	}
 }

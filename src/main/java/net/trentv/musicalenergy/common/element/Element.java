@@ -6,6 +6,7 @@ import java.util.List;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntitySelectors;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -33,26 +34,34 @@ public class Element
 		elements.add(this);
 	}
 
-	public int onAOE(EntityLivingBase entity, World world, ItemStack stack)
+	/* Stubs for effects depending on different instruments */
+
+	public void onAOE(EntityLivingBase entity, World world, ItemStack stack)
 	{
-		return 0;
 	}
 
-	public int onBeam(EntityLivingBase entity, World world, ItemStack stack)
+	public void onBeam(EntityLivingBase entity, World world, ItemStack stack)
 	{
-		return 0;
 	}
 
 	public void onProjectile(EntityLivingBase entity, World world, ItemStack stack)
 	{
 	}
 
-	public int onSelfCast(EntityLivingBase entity, World world, ItemStack stack)
+	public void onSelfCast(EntityLivingBase entity, World world, ItemStack stack)
 	{
-		return 0;
 	}
 
-	public static final List<Entity> getEntitiesNearby(int radius, EntityLivingBase entity, World world)
+	/* Utility methods */
+
+	protected static final void attackEntity(Entity entity, DamageSource source, int damage)
+	{
+		entity.setEntityInvulnerable(false);
+		entity.hurtResistantTime = 0;
+		entity.attackEntityFrom(source, damage);
+	}
+
+	protected static final List<Entity> getEntitiesNearby(int radius, EntityLivingBase entity, World world)
 	{
 		BlockPos pos1 = entity.getPosition().up(radius).north(radius).east(radius);
 		BlockPos pos2 = entity.getPosition().down(radius).south(radius).west(radius);
@@ -60,9 +69,10 @@ public class Element
 		return world.getEntitiesInAABBexcluding(entity, boundingBox, null);
 	}
 
-	// Credit to Leviathan#0044 in MMD for this method. Slightly modified for my use.
-	public static final EntityLivingBase raycastEntity(World world, Entity caster)
+	protected static final EntityLivingBase raycastEntity(World world, Entity caster)
 	{
+		// Credit to Leviathan#0044 in MMD for this method. Slightly modified for my use.
+
 		int rayDistance = 20;
 		Vec3d startVec = caster.getPositionEyes(1);
 		Vec3d lookVec = caster.getLook(1.0F);

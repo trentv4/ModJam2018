@@ -9,8 +9,6 @@ import net.trentv.musicalenergy.client.GuiCasting;
 
 public class GuiHandlerCasting implements IGuiHandler
 {
-	public static final int CASTING = 0;
-
 	public static void openGui(EntityPlayer player, int id, BlockPos pos)
 	{
 		player.openGui(MusicalEnergy.instance, id, player.getEntityWorld(), pos.getX(), pos.getY(), pos.getZ());
@@ -25,7 +23,7 @@ public class GuiHandlerCasting implements IGuiHandler
 	@Override
 	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
 	{
-		if (ID == CASTING)
+		if (ID == 0)
 			return new GuiCasting(player);
 		return null;
 	}

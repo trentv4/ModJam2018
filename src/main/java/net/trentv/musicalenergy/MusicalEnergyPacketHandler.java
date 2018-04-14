@@ -16,14 +16,19 @@ public class MusicalEnergyPacketHandler
 {
 	public static final SimpleNetworkWrapper INSTANCE = NetworkRegistry.INSTANCE.newSimpleChannel(MusicalEnergy.MODID);
 
+	public static void init()
+	{
+		INSTANCE.registerMessage(SpellMessageHandler.class, SpellMessage.class, 0, Side.SERVER);
+	}
+
 	public static class SpellMessage implements IMessage
 	{
+		private int[] spellIDs;
+
 		public SpellMessage()
 		{
 			this.spellIDs = new int[0];
 		}
-
-		private int[] spellIDs;
 
 		public SpellMessage(int... spellIDs)
 		{
@@ -59,7 +64,7 @@ public class MusicalEnergyPacketHandler
 
 			player.getServerWorld().addScheduledTask(() ->
 			{
-				ItemStack heldItem = player.getHeldItem(player.getActiveHand());
+				ItemStack heldItem = player.getActiveItemStack();
 				if (heldItem.getItem() instanceof ItemInstrument)
 				{
 					ItemInstrument instrument = (ItemInstrument) heldItem.getItem();
@@ -74,10 +79,5 @@ public class MusicalEnergyPacketHandler
 			});
 			return null;
 		}
-	}
-
-	public static void init()
-	{
-		INSTANCE.registerMessage(SpellMessageHandler.class, SpellMessage.class, 0, Side.SERVER);
 	}
 }

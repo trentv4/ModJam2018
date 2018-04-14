@@ -1,8 +1,4 @@
 {
-	"item.trumpet.use": {
-		"subtitle": "subtitles.item.musicalenergy.trumpet.use",
-		"sounds": ["musicalenergy:trumpet"]
-	},
 	"item.flute.use": {
 		"subtitle": "subtitles.item.musicalenergy.flute.use",
 		"sounds": ["musicalenergy:flute"]

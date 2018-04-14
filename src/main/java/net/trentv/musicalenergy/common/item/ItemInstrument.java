@@ -13,10 +13,11 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.trentv.musicalenergy.common.GuiHandlerCasting;
+import net.trentv.musicalenergy.MusicalEnergy;
 import net.trentv.musicalenergy.common.element.Element;
 
 public abstract class ItemInstrument extends Item
@@ -37,8 +38,6 @@ public abstract class ItemInstrument extends Item
 		});
 	}
 
-	public abstract void doot(Element[] elements, EntityLivingBase entity, World world, ItemStack stack);
-
 	@Override
 	public EnumAction getItemUseAction(ItemStack stack)
 	{
@@ -54,10 +53,12 @@ public abstract class ItemInstrument extends Item
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
 	{
+		BlockPos pos = player.getPosition();
+		player.openGui(MusicalEnergy.instance, 0, player.getEntityWorld(), pos.getX(), pos.getY(), pos.getZ());
 		player.setActiveHand(hand);
-
-		GuiHandlerCasting.openGui(player, GuiHandlerCasting.CASTING, player.getPosition());
 
 		return new ActionResult<>(EnumActionResult.SUCCESS, player.getHeldItem(hand));
 	}
+
+	public abstract void doot(Element[] elements, EntityLivingBase entity, World world, ItemStack stack);
 }

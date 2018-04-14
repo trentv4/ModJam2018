@@ -2,13 +2,13 @@
 {
   "modid": "musicalenergy",
   "name": "Musical Energy",
-  "description": "ModJam 2018 entry. Cast spells using music to choose elements?",
+  "description": "ModJam 2018 entry. Cast spells using music by playing various instruments and notes!",
   "version": "${version}",
   "mcversion": "${mcversion}",
   "url": "https://github.com/trentv4/ModJam2018",
   "updateUrl": "",
   "authorList": ["Trentv4"],
-  "credits": "MMD members for assistance in getting stuff done quickly.",
+  "credits": "MMD members for assistance in getting stuff done quickly. In particular, Jamieswhiteshirt and Leviathan.",
   "logoFile": "",
   "screenshots": [],
   "dependencies": []

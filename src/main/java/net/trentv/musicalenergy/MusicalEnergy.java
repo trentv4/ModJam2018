@@ -38,7 +38,6 @@ public class MusicalEnergy
 		logger = event.getModLog();
 
 		MusicalObjects.init();
-
 		MusicalEnergyPacketHandler.init();
 
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandlerCasting());

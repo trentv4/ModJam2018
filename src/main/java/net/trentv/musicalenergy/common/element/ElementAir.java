@@ -16,7 +16,7 @@ public class ElementAir extends Element
 	}
 
 	@Override
-	public int onAOE(EntityLivingBase entity, World world, ItemStack stack)
+	public void onAOE(EntityLivingBase entity, World world, ItemStack stack)
 	{
 		List<Entity> a = getEntitiesNearby(5, entity, world);
 		for (Entity target : a)
@@ -29,11 +29,10 @@ public class ElementAir extends Element
 				target.velocityChanged = true;
 			}
 		}
-		return 0;
 	}
 
 	@Override
-	public int onBeam(EntityLivingBase entity, World world, ItemStack stack)
+	public void onBeam(EntityLivingBase entity, World world, ItemStack stack)
 	{
 		EntityLivingBase target = raycastEntity(world, entity);
 		if (target != null)
@@ -42,7 +41,6 @@ public class ElementAir extends Element
 			target.addVelocity(lookVec.x, lookVec.y, lookVec.z);
 			target.velocityChanged = true;
 		}
-		return 0;
 	}
 
 	@Override
@@ -52,10 +50,9 @@ public class ElementAir extends Element
 	}
 
 	@Override
-	public int onSelfCast(EntityLivingBase entity, World world, ItemStack stack)
+	public void onSelfCast(EntityLivingBase entity, World world, ItemStack stack)
 	{
 		entity.addVelocity(0, 0.5, 0);
 		entity.velocityChanged = true;
-		return 0;
 	}
 }
