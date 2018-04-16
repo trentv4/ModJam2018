@@ -1,5 +1,18 @@
 package net.trentv.musicalenergy.client;
 
+import static net.trentv.musicalenergy.MusicalEnergyConfig.BIND_AIR;
+import static net.trentv.musicalenergy.MusicalEnergyConfig.BIND_DEATH;
+import static net.trentv.musicalenergy.MusicalEnergyConfig.BIND_EARTH;
+import static net.trentv.musicalenergy.MusicalEnergyConfig.BIND_FIRE;
+import static net.trentv.musicalenergy.MusicalEnergyConfig.BIND_LIFE;
+import static net.trentv.musicalenergy.MusicalEnergyConfig.BIND_WATER;
+import static net.trentv.musicalenergy.common.MusicalObjects.AIR;
+import static net.trentv.musicalenergy.common.MusicalObjects.DEATH;
+import static net.trentv.musicalenergy.common.MusicalObjects.EARTH;
+import static net.trentv.musicalenergy.common.MusicalObjects.FIRE;
+import static net.trentv.musicalenergy.common.MusicalObjects.LIFE;
+import static net.trentv.musicalenergy.common.MusicalObjects.WATER;
+
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -10,7 +23,6 @@ import net.minecraft.util.ResourceLocation;
 import net.trentv.musicalenergy.MusicalEnergy;
 import net.trentv.musicalenergy.MusicalEnergyPacketHandler;
 import net.trentv.musicalenergy.MusicalEnergyPacketHandler.SpellMessage;
-import net.trentv.musicalenergy.common.MusicalObjects;
 import net.trentv.musicalenergy.common.element.Element;
 import net.trentv.musicalenergy.common.item.ItemInstrument;
 
@@ -40,7 +52,7 @@ public class GuiCasting extends GuiScreen
 		int startWidth = (width / 2) - 34;
 		for (int i = 0; i < elements.size(); i++)
 		{
-			drawTexturedModalRect(startWidth + (15 * i), height - 60, 10 * (elements.get(i).ID), 0, 10, 15);
+			drawTexturedModalRect(startWidth + (15 * i), height - 60, 10 * (elements.get(i).ID - 1), 0, 10, 15);
 		}
 	}
 
@@ -62,27 +74,18 @@ public class GuiCasting extends GuiScreen
 	protected void keyTyped(char typedChar, int keyCode) throws IOException
 	{
 		Element newElement = null;
-		switch (Character.toLowerCase(typedChar))
-		{
-			case 'q':
-				newElement = MusicalObjects.FIRE;
-				break;
-			case 'w':
-				newElement = MusicalObjects.WATER;
-				break;
-			case 'e':
-				newElement = MusicalObjects.EARTH;
-				break;
-			case 'a':
-				newElement = MusicalObjects.AIR;
-				break;
-			case 's':
-				newElement = MusicalObjects.LIFE;
-				break;
-			case 'd':
-				newElement = MusicalObjects.DEATH;
-				break;
-		}
+		if (keyCode == BIND_FIRE.getKeyCode())
+			newElement = FIRE;
+		if (keyCode == BIND_WATER.getKeyCode())
+			newElement = WATER;
+		if (keyCode == BIND_EARTH.getKeyCode())
+			newElement = EARTH;
+		if (keyCode == BIND_AIR.getKeyCode())
+			newElement = AIR;
+		if (keyCode == BIND_LIFE.getKeyCode())
+			newElement = LIFE;
+		if (keyCode == BIND_DEATH.getKeyCode())
+			newElement = DEATH;
 		if (newElement != null)
 		{
 			if (elements.size() < 5)

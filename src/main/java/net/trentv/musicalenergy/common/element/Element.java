@@ -23,7 +23,7 @@ public class Element
 
 	static
 	{
-		new Element("null");
+		registerElements(new Element("null"));
 	}
 
 	public Element(String name)

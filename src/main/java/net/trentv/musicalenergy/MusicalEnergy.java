@@ -39,6 +39,7 @@ public class MusicalEnergy
 
 		MusicalObjects.init();
 		MusicalEnergyPacketHandler.init();
+		MusicalEnergyConfig.init();
 
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandlerCasting());
 		proxy.registerEventHandlers();
