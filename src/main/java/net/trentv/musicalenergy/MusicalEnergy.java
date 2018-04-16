@@ -12,6 +12,7 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.trentv.musicalenergy.common.CommonProxy;
 import net.trentv.musicalenergy.common.GuiHandlerCasting;
 import net.trentv.musicalenergy.common.MusicalObjects;
+import net.trentv.musicalenergy.config.MusicalEnergyKeybinds;
 
 @Mod(modid = MusicalEnergy.MODID, version = MusicalEnergy.VERSION)
 public class MusicalEnergy
@@ -39,7 +40,7 @@ public class MusicalEnergy
 
 		MusicalObjects.init();
 		MusicalEnergyPacketHandler.init();
-		MusicalEnergyConfig.init();
+		MusicalEnergyKeybinds.init();
 
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandlerCasting());
 		proxy.registerEventHandlers();

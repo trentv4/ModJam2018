@@ -1,17 +1,17 @@
 package net.trentv.musicalenergy.client;
 
-import static net.trentv.musicalenergy.MusicalEnergyConfig.BIND_AIR;
-import static net.trentv.musicalenergy.MusicalEnergyConfig.BIND_DEATH;
-import static net.trentv.musicalenergy.MusicalEnergyConfig.BIND_EARTH;
-import static net.trentv.musicalenergy.MusicalEnergyConfig.BIND_FIRE;
-import static net.trentv.musicalenergy.MusicalEnergyConfig.BIND_LIFE;
-import static net.trentv.musicalenergy.MusicalEnergyConfig.BIND_WATER;
 import static net.trentv.musicalenergy.common.MusicalObjects.AIR;
 import static net.trentv.musicalenergy.common.MusicalObjects.DEATH;
 import static net.trentv.musicalenergy.common.MusicalObjects.EARTH;
 import static net.trentv.musicalenergy.common.MusicalObjects.FIRE;
 import static net.trentv.musicalenergy.common.MusicalObjects.LIFE;
 import static net.trentv.musicalenergy.common.MusicalObjects.WATER;
+import static net.trentv.musicalenergy.config.MusicalEnergyKeybinds.BIND_AIR;
+import static net.trentv.musicalenergy.config.MusicalEnergyKeybinds.BIND_DEATH;
+import static net.trentv.musicalenergy.config.MusicalEnergyKeybinds.BIND_EARTH;
+import static net.trentv.musicalenergy.config.MusicalEnergyKeybinds.BIND_FIRE;
+import static net.trentv.musicalenergy.config.MusicalEnergyKeybinds.BIND_LIFE;
+import static net.trentv.musicalenergy.config.MusicalEnergyKeybinds.BIND_WATER;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,6 +25,7 @@ import net.trentv.musicalenergy.MusicalEnergyPacketHandler;
 import net.trentv.musicalenergy.MusicalEnergyPacketHandler.SpellMessage;
 import net.trentv.musicalenergy.common.element.Element;
 import net.trentv.musicalenergy.common.item.ItemInstrument;
+import net.trentv.musicalenergy.config.MusicalEnergyConfig;
 
 public class GuiCasting extends GuiScreen
 {
@@ -88,7 +89,7 @@ public class GuiCasting extends GuiScreen
 			newElement = DEATH;
 		if (newElement != null)
 		{
-			if (elements.size() < 5)
+			if (elements.size() < MusicalEnergyConfig.GENERAL.maxElements)
 			{
 				ItemStack heldItem = player.getActiveItemStack();
 				if (heldItem.getItem() instanceof ItemInstrument)

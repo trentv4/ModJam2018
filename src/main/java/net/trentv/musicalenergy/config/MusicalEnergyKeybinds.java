@@ -1,11 +1,12 @@
-package net.trentv.musicalenergy;
+package net.trentv.musicalenergy.config;
 
 import org.lwjgl.input.Keyboard;
 
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.trentv.musicalenergy.MusicalEnergy;
 
-public class MusicalEnergyConfig
+public class MusicalEnergyKeybinds
 {
 	public static KeyBinding BIND_FIRE, BIND_WATER, BIND_EARTH, BIND_AIR, BIND_LIFE, BIND_DEATH;
 
