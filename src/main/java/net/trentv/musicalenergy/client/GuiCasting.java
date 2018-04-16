@@ -40,7 +40,7 @@ public class GuiCasting extends GuiScreen
 		int startWidth = (width / 2) - 34;
 		for (int i = 0; i < elements.size(); i++)
 		{
-			drawTexturedModalRect(startWidth + (15 * i), height - 60, 10 * (elements.get(i).ID - 1), 0, 10, 15);
+			drawTexturedModalRect(startWidth + (15 * i), height - 60, 10 * (elements.get(i).ID), 0, 10, 15);
 		}
 	}
 
