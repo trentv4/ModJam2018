@@ -27,9 +27,9 @@ public class ItemVuvuzela extends ItemInstrument
 			{
 				Vec3d p = entity.getPositionVector();
 				p = p.addVector(Math.cos(i) * 2, 1, Math.sin(i) * 2);
-				w.spawnParticle(EnumParticleTypes.CRIT_MAGIC, p.x, p.y, p.z, 1, 0.0, 0.0, 0.0, 0);
+				w.spawnParticle(EnumParticleTypes.NOTE, p.x, p.y, p.z, 1, 0.0, 0.0, 0.0, 0);
 				p = p.addVector(Math.cos(i) * 2, 0, Math.sin(i) * 2);
-				w.spawnParticle(EnumParticleTypes.CRIT_MAGIC, p.x, p.y, p.z, 1, 0.0, 0.0, 0.0, 0);
+				w.spawnParticle(EnumParticleTypes.NOTE, p.x, p.y, p.z, 1, 0.0, 0.0, 0.0, 0);
 			}
 		}
 	}

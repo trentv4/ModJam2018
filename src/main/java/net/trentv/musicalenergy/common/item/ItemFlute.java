@@ -23,13 +23,13 @@ public class ItemFlute extends ItemInstrument
 		{
 			e.onBeam(entity, world, stack);
 			WorldServer w = (WorldServer) world;
-			for (int i = 1; i < 20 * 4; i++)
+			for (int i = 1; i < 20; i++)
 			{
 				Vec3d p = entity.getPositionVector();
 				Vec3d lookVector = entity.getLookVec();
-				p = p.add(lookVector.scale(i / 4.0));
+				p = p.add(lookVector.scale(i));
 				p = p.addVector(0, entity.getEyeHeight(), 0);
-				w.spawnParticle(EnumParticleTypes.CRIT_MAGIC, p.x, p.y, p.z, 1, 0.0, 0.0, 0.0, 0);
+				w.spawnParticle(EnumParticleTypes.NOTE, p.x, p.y, p.z, 1, 0.0, 0.0, 0.0, 0);
 			}
 		}
 	}

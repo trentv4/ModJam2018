@@ -23,11 +23,11 @@ public class ItemHarmonica extends ItemInstrument
 		{
 			e.onSelfCast(entity, world, stack);
 			WorldServer w = (WorldServer) world;
-			for (int i = 0; i < 360; i += 15)
+			for (int i = 0; i < 360; i += 30)
 			{
 				Vec3d p = entity.getPositionVector();
 				p = p.addVector(Math.cos(i), 1, Math.sin(i));
-				w.spawnParticle(EnumParticleTypes.CRIT_MAGIC, p.x, p.y, p.z, 1, 0.0, 0.0, 0.0, 0);
+				w.spawnParticle(EnumParticleTypes.NOTE, p.x, p.y, p.z, 1, 0.0, 0.0, 0.0, 0);
 			}
 		}
 	}
