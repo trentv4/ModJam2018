@@ -7,6 +7,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+import net.trentv.musicalenergy.common.MusicalObjects;
 
 public class ElementFire extends Element
 {
@@ -50,5 +51,13 @@ public class ElementFire extends Element
 	{
 		entity.setFire(4);
 		attackEntity(entity, DamageSource.ON_FIRE, 2);
+	}
+
+	@Override
+	public Element reactsWith(Element a)
+	{
+		if (a == MusicalObjects.WATER)
+			return MusicalObjects.STEAM;
+		return this;
 	}
 }

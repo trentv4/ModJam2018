@@ -7,6 +7,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+import net.trentv.musicalenergy.common.MusicalObjects;
 
 public class ElementDeath extends Element
 {
@@ -51,5 +52,13 @@ public class ElementDeath extends Element
 	public void onSelfCast(EntityLivingBase entity, World world, ItemStack stack)
 	{
 		attackEntity(entity, DamageSource.MAGIC, 8);
+	}
+
+	@Override
+	public Element reactsWith(Element a)
+	{
+		if (a == MusicalObjects.AIR)
+			return MusicalObjects.LIGHTNING;
+		return this;
 	}
 }

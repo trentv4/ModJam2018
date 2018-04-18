@@ -59,6 +59,11 @@ public class Element
 	{
 	}
 
+	public Element reactsWith(Element a)
+	{
+		return this;
+	}
+
 	/* Utility methods */
 
 	protected static final void attackEntity(Entity entity, DamageSource source, int damage)

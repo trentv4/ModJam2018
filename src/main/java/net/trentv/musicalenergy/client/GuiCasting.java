@@ -1,18 +1,5 @@
 package net.trentv.musicalenergy.client;
 
-import static net.trentv.musicalenergy.common.MusicalObjects.AIR;
-import static net.trentv.musicalenergy.common.MusicalObjects.DEATH;
-import static net.trentv.musicalenergy.common.MusicalObjects.EARTH;
-import static net.trentv.musicalenergy.common.MusicalObjects.FIRE;
-import static net.trentv.musicalenergy.common.MusicalObjects.LIFE;
-import static net.trentv.musicalenergy.common.MusicalObjects.WATER;
-import static net.trentv.musicalenergy.config.MusicalEnergyKeybinds.BIND_AIR;
-import static net.trentv.musicalenergy.config.MusicalEnergyKeybinds.BIND_DEATH;
-import static net.trentv.musicalenergy.config.MusicalEnergyKeybinds.BIND_EARTH;
-import static net.trentv.musicalenergy.config.MusicalEnergyKeybinds.BIND_FIRE;
-import static net.trentv.musicalenergy.config.MusicalEnergyKeybinds.BIND_LIFE;
-import static net.trentv.musicalenergy.config.MusicalEnergyKeybinds.BIND_WATER;
-
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -26,6 +13,7 @@ import net.trentv.musicalenergy.MusicalEnergyPacketHandler.SpellMessage;
 import net.trentv.musicalenergy.common.element.Element;
 import net.trentv.musicalenergy.common.item.ItemInstrument;
 import net.trentv.musicalenergy.config.MusicalEnergyConfig;
+import net.trentv.musicalenergy.config.MusicalEnergyKeybinds;
 
 public class GuiCasting extends GuiScreen
 {
@@ -75,29 +63,38 @@ public class GuiCasting extends GuiScreen
 	protected void keyTyped(char typedChar, int keyCode) throws IOException
 	{
 		Element newElement = null;
-		if (keyCode == BIND_FIRE.getKeyCode())
-			newElement = FIRE;
-		if (keyCode == BIND_WATER.getKeyCode())
-			newElement = WATER;
-		if (keyCode == BIND_EARTH.getKeyCode())
-			newElement = EARTH;
-		if (keyCode == BIND_AIR.getKeyCode())
-			newElement = AIR;
-		if (keyCode == BIND_LIFE.getKeyCode())
-			newElement = LIFE;
-		if (keyCode == BIND_DEATH.getKeyCode())
-			newElement = DEATH;
-		if (newElement != null)
+		for (KeyBindingElement e : MusicalEnergyKeybinds.keybinds)
 		{
-			if (elements.size() < MusicalEnergyConfig.GENERAL.maxElements)
+			if (e.getKeyCode() == keyCode)
+				newElement = e.element;
+		}
+
+		if (newElement == null)
+			return;
+
+		boolean hasReacted = false;
+
+		for (int i = 0; i < elements.size(); i++)
+		{
+			Element startingElement = elements.get(i);
+			Element reactedElement = startingElement.reactsWith(newElement);
+			if (startingElement != reactedElement)
 			{
-				ItemStack heldItem = player.getActiveItemStack();
-				if (heldItem.getItem() instanceof ItemInstrument)
-				{
-					ItemInstrument instrument = (ItemInstrument) heldItem.getItem();
-					player.playSound(instrument.soundEffect, 1, (newElement.ID / (float) Element.MAX_ID) * 2);
+				hasReacted = true;
+				elements.set(i, reactedElement);
+				break;
+			}
+		}
+
+		if (elements.size() < MusicalEnergyConfig.GENERAL.maxElements)
+		{
+			ItemStack heldItem = player.getActiveItemStack();
+			if (heldItem.getItem() instanceof ItemInstrument)
+			{
+				ItemInstrument instrument = (ItemInstrument) heldItem.getItem();
+				player.playSound(instrument.soundEffect, 1, (newElement.ID / (float) Element.MAX_ID) * 2);
+				if (!hasReacted)
 					elements.add(newElement);
-				}
 			}
 		}
 		super.keyTyped(typedChar, keyCode);

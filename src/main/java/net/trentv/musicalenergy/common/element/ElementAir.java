@@ -7,6 +7,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.trentv.musicalenergy.common.MusicalObjects;
 
 public class ElementAir extends Element
 {
@@ -54,5 +55,13 @@ public class ElementAir extends Element
 	{
 		entity.addVelocity(0, 0.5, 0);
 		entity.velocityChanged = true;
+	}
+
+	@Override
+	public Element reactsWith(Element a)
+	{
+		if (a == MusicalObjects.DEATH)
+			return MusicalObjects.LIGHTNING;
+		return this;
 	}
 }

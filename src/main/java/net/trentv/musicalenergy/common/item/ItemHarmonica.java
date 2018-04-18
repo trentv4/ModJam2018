@@ -27,7 +27,7 @@ public class ItemHarmonica extends ItemInstrument
 			{
 				Vec3d p = entity.getPositionVector();
 				p = p.addVector(Math.cos(i), 1, Math.sin(i));
-				w.spawnParticle(EnumParticleTypes.NOTE, p.x, p.y, p.z, 1, 0.0, 0.0, 0.0, 0);
+				w.spawnParticle(EnumParticleTypes.NOTE, p.x, p.y - 0.5, p.z, 1, 0.0, 0.0, 0.0, 0);
 			}
 		}
 	}

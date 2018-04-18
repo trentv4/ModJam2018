@@ -8,6 +8,7 @@ import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
+import net.trentv.musicalenergy.common.MusicalObjects;
 
 public class ElementWater extends Element
 {
@@ -70,5 +71,13 @@ public class ElementWater extends Element
 			duration += a.getDuration();
 		}
 		entity.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, duration, 1));
+	}
+
+	@Override
+	public Element reactsWith(Element a)
+	{
+		if (a == MusicalObjects.FIRE)
+			return MusicalObjects.STEAM;
+		return this;
 	}
 }
