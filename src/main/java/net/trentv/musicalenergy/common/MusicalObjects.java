@@ -14,6 +14,7 @@ import net.trentv.musicalenergy.common.element.ElementEarth;
 import net.trentv.musicalenergy.common.element.ElementFire;
 import net.trentv.musicalenergy.common.element.ElementLife;
 import net.trentv.musicalenergy.common.element.ElementLightning;
+import net.trentv.musicalenergy.common.element.ElementShield;
 import net.trentv.musicalenergy.common.element.ElementSteam;
 import net.trentv.musicalenergy.common.element.ElementWater;
 import net.trentv.musicalenergy.common.item.ItemFlute;
@@ -55,6 +56,7 @@ public class MusicalObjects
 	public static final ElementDeath DEATH = new ElementDeath("death");
 	public static final ElementLightning LIGHTNING = new ElementLightning("lightning");
 	public static final ElementSteam STEAM = new ElementSteam("steam");
+	public static final ElementShield SHIELD = new ElementShield("shield");
 
 	public static final void init()
 	{
@@ -64,7 +66,7 @@ public class MusicalObjects
 		sounds.add(FLUTE_SOUND);
 		sounds.add(VUVUZELA_SOUND);
 		sounds.add(HARMONICA_SOUND);
-		Element.registerElements(FIRE, WATER, EARTH, AIR, LIFE, DEATH, LIGHTNING, STEAM);
+		Element.registerElements(FIRE, WATER, EARTH, AIR, LIFE, DEATH, LIGHTNING, STEAM, SHIELD);
 	}
 
 	private static class SoundEventMusical extends SoundEvent

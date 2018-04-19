@@ -6,6 +6,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import net.trentv.musicalenergy.common.MusicalObjects;
 
 public class ElementLife extends Element
 {
@@ -46,5 +47,13 @@ public class ElementLife extends Element
 	public void onSelfCast(EntityLivingBase entity, World world, ItemStack stack)
 	{
 		entity.heal(3);
+	}
+
+	@Override
+	public Element reactsWith(Element a)
+	{
+		if (a == MusicalObjects.EARTH)
+			return MusicalObjects.SHIELD;
+		return this;
 	}
 }
